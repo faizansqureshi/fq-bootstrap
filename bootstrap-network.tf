@@ -35,7 +35,7 @@ module "role_foundation-network" {
 
 module "terraform_state-network" {
   source        = "../modules/terraform_state"
-  bucket_name   = "fq-dev-terraform-state-bucket"
+  bucket_name   = "fq-network-terraform-state-bucket"
   dynom_db_name = "state_dynamo_db"
   tags = { "Name" : "terraform_state",
   "environment" : "dev" }
