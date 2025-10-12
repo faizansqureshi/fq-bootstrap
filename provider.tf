@@ -9,8 +9,8 @@ terraform {
       version = "~> 3.0"
     }
   }
-      
-  }
+
+}
 
 
 provider "aws" {
@@ -38,7 +38,7 @@ terraform {
     region         = "eu-west-1"
     dynamodb_table = "terraformstate-locks-tfstate-s3082025"
     encrypt        = true
-    profile = "AWSMGMT"
+    profile        = "AWSMGMT"
   }
 }
- 
+
