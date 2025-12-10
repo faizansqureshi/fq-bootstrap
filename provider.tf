@@ -15,8 +15,8 @@ terraform {
 
 provider "aws" {
   region  = "eu-west-1"
-  profile = "fq-personal-network"
-  alias   = "fq-personal-network"
+  profile = "fq-netw-non-prod"
+  alias   = "fq-netw-non-prod"
 }
 
 provider "aws" {
@@ -30,6 +30,32 @@ provider "aws" {
   profile = "AWSMGMT"
   alias   = "AWSMGMT"
 }
+
+provider "aws" {
+  region  = "eu-west-1"
+  profile = "fq-test"
+  alias   = "fq-test"
+}
+
+provider "aws" {
+  region  = "eu-west-1"
+  profile = "fq-uat"
+  alias   = "fq-uat"
+}
+
+provider "aws" {
+  region  = "eu-west-1"
+  profile = "fq-prod"
+  alias   = "fq-prod"
+}
+
+
+provider "aws" {
+  region  = "eu-west-1"
+  profile = "fq-netw-prod"
+  alias   = "fq-netw-prod"
+}
+
 
 terraform {
   backend "s3" {
