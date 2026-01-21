@@ -4,7 +4,7 @@ module "oidc_provider-mgmt" {
   source = "./modules/oidc"
   providers = {
     aws = aws.AWSMGMT
-}
+  }
 }
 
 
@@ -21,7 +21,7 @@ module "role_foundation-mgmt" {
   source              = "./modules/iam_role"
   role_name           = "foundation-role"
   assume_role_policy  = data.aws_iam_policy_document.github_assume_role_policy-mgmt.json
-  managed_policy_arns = [module.policies-mgmt.fq_foundation_write, module.policies-mgmt.tfstate_write, "arn:aws:iam::aws:policy/AmazonS3FullAccess", "arn:aws:iam::aws:policy/IAMAccessAnalyzerFullAccess", "arn:aws:iam::aws:policy/ServiceQuotasFullAccess","arn:aws:iam::aws:policy/AdministratorAccess"]
+  managed_policy_arns = [module.policies-mgmt.fq_foundation_write, module.policies-mgmt.tfstate_write, "arn:aws:iam::aws:policy/AmazonS3FullAccess", "arn:aws:iam::aws:policy/IAMAccessAnalyzerFullAccess", "arn:aws:iam::aws:policy/ServiceQuotasFullAccess", "arn:aws:iam::aws:policy/AdministratorAccess"]
   providers = {
     aws = aws.AWSMGMT
   }
