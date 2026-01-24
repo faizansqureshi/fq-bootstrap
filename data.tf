@@ -101,3 +101,29 @@ data "aws_iam_policy_document" "github_assume_role_policy-mgmt" {
   provider = aws.AWSMGMT
 
 }
+
+
+data "aws_iam_policy_document" "github_assume_role_policy-uat" {
+  statement {
+    actions = ["sts:AssumeRoleWithWebIdentity"]
+
+    condition {
+      test     = "StringEquals"
+      variable = "token.actions.githubusercontent.com:aud"
+      values   = ["sts.amazonaws.com"]
+    }
+
+    condition {
+      test     = "StringLike"
+      variable = "token.actions.githubusercontent.com:sub"
+      values   = var.github_repos
+    }
+
+    principals {
+      type        = "Federated"
+      identifiers = [module.oidc_provider-mgmt.oidc_provider_arn]
+    }
+  }
+  provider = aws.fq-uat
+
+}
