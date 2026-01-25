@@ -121,7 +121,7 @@ data "aws_iam_policy_document" "github_assume_role_policy-uat" {
 
     principals {
       type        = "Federated"
-      identifiers = [module.oidc_provider-mgmt.oidc_provider_arn]
+      identifiers = [module.oidc_provider-uat.oidc_provider_arn]
     }
   }
   provider = aws.fq-uat
