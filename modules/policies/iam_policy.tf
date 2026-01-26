@@ -65,9 +65,8 @@ resource "aws_iam_policy" "tfstate_write" {
     Statement = [
       {
         "Action" : [
-          "s3:ListObjectsV2",
-          "s3:ListObjects",
-          "s3:ListBucket"
+          "s3:ListBucket",
+          "s3:ListBucketVersions"
         ],
         Effect   = "Allow",
         Resource = var.s3_bucket_arn
@@ -75,14 +74,23 @@ resource "aws_iam_policy" "tfstate_write" {
       {
         "Action" : [
           "s3:PutObject",
-          "s3:ListObjectsV2",
-          "s3:ListObjects",
           "s3:HeadObject",
           "s3:GetObject",
-          "s3:DeleteObject"
+          "s3:DeleteObject",
+          "s3:GetObjectVersion"
         ],
         Effect   = "Allow",
-        Resource = var.s3_bucket_arn
+        Resource = "${var.s3_bucket_arn}/*"
+      },
+      {
+        "Action" : [
+          "dynamodb:PutItem",
+          "dynamodb:GetItem",
+          "dynamodb:DeleteItem",
+          "dynamodb:DescribeTable"
+        ],
+        Effect   = "Allow",
+        Resource = "*"
       }
     ],
     "Version" : "2012-10-17"
